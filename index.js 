@@ -1,8 +1,27 @@
-const { Baileys } = require('@adiwajshing/baileys');
-const config = require('./config');
-const fs = require('fs');
+console.log('Starting...');
 
-const botName = 'Prime MD';
+let { spawn } = require('child_process');
+let path = require('path');
+let fs = require('fs');
+let package = require('./package.json');
+const CFonts = require('cfonts');
+const { Baileys } = require('@adiwajshing/baileys');
+
+CFonts.say('Lightweight\nWhatsApp Bot', {
+  font: 'chrome',
+  align: 'center',
+  gradient: ['red', 'magenta']
+});
+
+CFonts.say(`'${package.name}' By @${package.author.name || package.author}`, {
+  font: 'console',
+  align: 'center',
+  gradient: ['red', 'magenta']
+});
+
+var isRunning = false;
+
+const config = require('./config');
 const bot = Baileys(config.sessionID, config.phoneNumber, config.verificationCode);
 
 const commands = {};
@@ -11,61 +30,111 @@ fs.readdirSync('./commands').forEach((file) => {
   commands[commandName] = require(`./commands/${file}`);
 });
 
-bot.on('message', async (message) => {
-  const { from, text } = message;
-  console.log(`Received message from ${from}: ${text}`);
+/**
+ * Start a js file
+ * @param {String} file `path/to/file`
+ */
+function start(file) {
+  if (isRunning) return;
+  isRunning = true;
+  let args = [path.join(__dirname, file), ...process.argv.slice(2)];
 
-  if (!text.startsWith(config.prefix)) return;
+  CFonts.say([process.argv[0], ...args].join(' '), {
+    font: 'console',
+    align: 'center',
+    gradient: ['red', 'magenta']
+  });
 
-  const command = text.slice(config.prefix.length).trim().split(' ')[0];
-  const args = text.slice(config.prefix.length).trim().split(' ').slice(1);
+  let p = spawn(process.argv[0], args, {
+    stdio: ['inherit', 'inherit', 'inherit', 'ipc']
+  });
 
-  const isAdmin = config.admin.numbers.includes(from);
-  const isOwner = config.owner === from;
-
-  const commandFile = commands[command.toLowerCase()];
-
-  if (commandFile) {
-    if (commandFile.requiresAdmin && !(isAdmin || isOwner)) {
-      bot.sendMessage(from, `You don't have permission to use this command. Contact ${botName} admins for assistance.`);
-      return;
+  p.on('message', (data) => {
+    console.log('[RECEIVED]', data);
+    switch (data) {
+      case 'reset':
+        p.kill();
+        isRunning = false;
+        start.apply(this, arguments);
+        break;
+      case 'uptime':
+        p.send(process.uptime());
+        break;
     }
+  });
 
-    await commandFile.execute(bot, from, args);
-  } else if (isAdmin || isOwner) {
-    switch (command.toLowerCase()) {
-      case 'ban':
-        bot.sendMessage(from, 'User banned successfully.');
-        break;
-      case 'unban':
-        bot.sendMessage(from, 'User unbanned successfully.');
-        break;
-      case 'mute':
-        bot.sendMessage(from, 'User muted successfully.');
-        break;
-      case 'unmute':
-        bot.sendMessage(from, 'User unmuted successfully.');
-        break;
-      case 'kick':
-        bot.sendMessage(from, 'User kicked successfully.');
-        break;
-      case 'promote':
-        bot.sendMessage(from, 'User promoted successfully.');
-        break;
-      default:
-        bot.sendMessage(from, `Invalid command. Type ${config.prefix}help for ${botName} commands.`);
+  p.on('exit', (code) => {
+    isRunning = false;
+    console.error('Exited with code:', code);
+    if (code === 0) return;
+    fs.watchFile(args[0], () => {
+      fs.unwatchFile(args[0]);
+      start(file);
+    });
+  });
+
+  bot.on('message', async (message) => {
+    const { from, text } = message;
+    console.log(`Received message from ${from}: ${text}`);
+
+    if (!text.startsWith(config.prefix)) return;
+
+    const command = text.slice(config.prefix.length).trim().split(' ')[0];
+    const args = text.slice(config.prefix.length).trim().split(' ').slice(1);
+
+    const isAdmin = config.admin.numbers.includes(from);
+    const isOwner = config.owner === from;
+
+    const commandFile = commands[command.toLowerCase()];
+
+    if (commandFile) {
+      if (commandFile.requiresAdmin && !(isAdmin || isOwner)) {
+        bot.sendMessage(from, `You don't have permission to use this command. Contact ${package.name} admins for assistance.`);
+        return;
+      }
+
+      await commandFile.execute(bot, from, args);
+    } else if (isAdmin || isOwner) {
+      switch (command.toLowerCase()) {
+        case 'ban':
+          bot.sendMessage(from, 'User banned successfully.');
+          break;
+        case 'unban':
+          bot.sendMessage(from, 'User unbanned successfully.');
+          break;
+        case 'mute':
+          bot.sendMessage(from, 'User muted successfully.');
+          break;
+        case 'unmute':
+          bot.sendMessage(from, 'User unmuted successfully.');
+          break;
+        case 'kick':
+          bot.sendMessage(from, 'User kicked successfully.');
+          break;
+        case 'promote':
+          bot.sendMessage(from, 'User promoted successfully.');
+          break;
+        case 'restart':
+          bot.sendMessage(from, 'Restarting Bot...');
+          process.exit(0);
+          break;
+        default:
+          bot.sendMessage(from, `Invalid command. Type ${config.prefix}help for ${package.name} commands.`);
+      }
+    } else {
+      bot.sendMessage(from, `Unknown command. Type ${config.prefix}help for ${package.name} commands.`);
     }
-  } else {
-    bot.sendMessage(from, `Unknown command. Type ${config.prefix}help for ${botName} commands.`);
-  }
-});
+  });
 
-bot.on('connect', () => {
-  console.log(`${botName} connected!`);
-});
+  bot.on('connect', () => {
+    console.log(`${package.name} connected!`);
+  });
 
-bot.on('disconnect', () => {
-  console.log(`${botName} disconnected!`);
-});
+  bot.on('disconnect', () => {
+    console.log(`${package.name} disconnected!`);
+  });
 
-bot.connect();
+  bot.connect();
+}
+
+start('main.js');
