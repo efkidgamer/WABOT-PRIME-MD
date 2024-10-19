@@ -1,24 +1,44 @@
-
 {
-  "name": "frank-kaumba-bot",
+  "name": "Prime-MD",
   "version": "1.0.0",
-  "description": "Customizable WhatsApp Bot by Frank Kaumba",
+  "description": "Customizable WhatsApp Bot",
+  "deprecated": false,
   "main": "index.js",
   "directories": {
     "lib": "lib",
     "src": "src",
-    "plugins": "plugins"
+    "commands": "commands"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon -x node index.js || touch index.js",
+    "test": "node test.js"
   },
+  "nodemonConfig": {
+    "ext": "js,html,sh"
+  },
+  "keywords": [
+    "whatsapp-bot",
+    "whatsapp",
+    "js-whatsapp"
+  ],
+  "homepage": "(link unavailable)",
   "author": {
-    "name": "Frank Kaumba"
+    "name": "Your Name"
   },
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+(link unavailable)"
+  },
+  "bugs": {
+    "url": "(link unavailable)"
+  },
+  "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@adiwajshing/baileys": "^4.4.1",
-    "express": "^4.17.1",
-    "nodemon": "^2.0.13"
+    "@adiwajshing/baileys": "^2.0.0-beta.16",
+    "cfonts": "^2.9.3",
+    "chalk": "^4.1.1",
+    "child_process": "^1.0.2",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
   }
 }
