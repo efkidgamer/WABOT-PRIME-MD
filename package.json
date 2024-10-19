@@ -1,23 +1,44 @@
 {
-  "name": "prime-md",
+  "name": "Prime-MD",
   "version": "1.0.0",
-  "description": "Prime MD WhatsApp Bot",
+  "description": "Customizable WhatsApp Bot",
+  "deprecated": false,
   "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
+  "directories": {
+    "lib": "lib",
+    "src": "src",
+    "commands": "commands"
   },
-  "keywords": [],
-  "author": "Your Name",
-  "license": "MIT",
+  "scripts": {
+    "start": "nodemon -x node index.js || touch index.js",
+    "test": "node test.js"
+  },
+  "nodemonConfig": {
+    "ext": "js,html,sh"
+  },
+  "keywords": [
+    "whatsapp-bot",
+    "whatsapp",
+    "js-whatsapp"
+  ],
+  "homepage": "(link unavailable)",
+  "author": {
+    "name": "Your Name"
+  },
   "repository": {
     "type": "git",
-    "url": "(link unavailable)"
+    "url": "git+https://GitHub.com/efkidgamer/PRIME-MD"
   },
-  "homepage": "(link unavailable)",
   "bugs": {
     "url": "(link unavailable)"
   },
+  "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@adiwajshing/baileys": "^1.3.4"
+    "@adiwajshing/baileys": "^1.3.4",
+    "cfonts": "^2.9.3",
+    "chalk": "^4.1.1",
+    "child_process": "^1.0.2",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
   }
 }
