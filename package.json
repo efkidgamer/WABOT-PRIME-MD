@@ -1,0 +1,23 @@
+{
+  "name": "prime-md",
+  "version": "1.0.0",
+  "description": "Prime MD WhatsApp Bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "(link unavailable)"
+  },
+  "homepage": "(link unavailable)",
+  "bugs": {
+    "url": "(link unavailable)"
+  },
+  "dependencies": {
+    "@adiwajshing/baileys": "^1.3.4"
+  }
+}
