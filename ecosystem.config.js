@@ -2,7 +2,8 @@ module.exports = {
   apps: [
     {
       name: 'Prime-MD',
-      script: 'project/src/index.js',
+      script: './src/index.js', // Update path if necessary
+      cwd: '/opt/render/project/', // Specify working directory
       instances: 1,
       autorestart: true,
       watch: true,
