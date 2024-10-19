@@ -10,11 +10,10 @@
     "commands": "commands"
   },
   "scripts": {
-    "start": "nodemon -x node index.js || touch index.js",
+    "start": "forever start index.js",
+    "stop": "forever stop index.js",
+    "restart": "forever restart index.js",
     "test": "node test.js"
-  },
-  "nodemonConfig": {
-    "ext": "js,html,sh"
   },
   "keywords": [
     "whatsapp-bot",
@@ -39,6 +38,7 @@
     "chalk": "^4.1.1",
     "child_process": "^1.0.2",
     "fs": "^0.0.1-security",
+    "forever": "^4.0.2",
     "path": "^0.12.7"
   }
 }
