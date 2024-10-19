@@ -1,4 +1,4 @@
-{
+up{
   "name": "frank-kaumba-bot",
   "version": "1.0.0",
   "description": "Customizable WhatsApp Bot by Frank Kaumba",
@@ -50,19 +50,5 @@
     "xmldom": "^0.6.0",
     "yargs": "^17.0.1",
     "yt-search": "^2.9.0"
-  }
-}
-```
-
-And here's the updated `package-lock.json` file:
-
-```
-{
-  "name": "frank-kaumba-bot",
-  "version": "1.0.0",
-  "lockfileVersion": 2,
-  "requires": true,
-  "dependencies": {
-    // dependencies listed here
   }
 }
