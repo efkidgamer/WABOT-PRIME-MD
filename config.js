@@ -1,15 +1,8 @@
-//enjoy by Frank kaumba
-const config = {
-  sessionID: 'YOUR_SESSION_ID',
-  phoneNumber: 'YOUR_WHATSAPP_PHONE_NUMBER',
-  verificationCode: 'YOUR_WHATSAPP_VERIFICATION_CODE',
-  prefix: '/', 
+module.exports = {
+  sessionID: 'session id ',
+  prefix: '/', // Command prefix
   admin: {
-    numbers: ['1234567890', '9876543210'],
-    // Admin powers
-    powers: ['ban', 'unban', 'mute', 'unmute', 'kick', 'promote'],
+    numbers: ['+1234567890'], // Array of admin phone numbers
   },
- owner: '1234567890',
+  owner: '+1234567890', // Bot owner's phone number
 };
-
-module.exports = config;
