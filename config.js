@@ -11,3 +11,5 @@ const config = {
   },
  owner: '1234567890',
 };
+
+module.exports = config;
