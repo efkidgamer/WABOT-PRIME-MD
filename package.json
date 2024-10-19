@@ -23,18 +23,18 @@
   ],
   "homepage": "(link unavailable)",
   "author": {
-    "name": "Your Name"
+    "name": "Frank kaumba"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://GitHub.com/efkidgamer/PRIME-MD"
+    "url": "git+(link unavailable)"
   },
   "bugs": {
     "url": "(link unavailable)"
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@adiwajshing/baileys": "^1.3.4",
+    "@adiwajshing/baileys": "^2.0.0-beta.16",
     "cfonts": "^2.9.3",
     "chalk": "^4.1.1",
     "child_process": "^1.0.2",
