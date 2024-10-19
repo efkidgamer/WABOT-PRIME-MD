@@ -1,44 +1,20 @@
 {
-  "name": "Prime-MD",
+  "name": "whatsapp-bot",
   "version": "1.0.0",
-  "description": "Customizable WhatsApp Bot",
-  "deprecated": false,
+  "description": "WhatsApp Bot using Baileys library",
   "main": "index.js",
-  "directories": {
-    "lib": "lib",
-    "src": "src",
-    "commands": "commands"
-  },
   "scripts": {
-    "start": "nodemon -x node index.js || touch index.js",
-    "test": "node test.js"
+    "start": "node index.js"
   },
-  "nodemonConfig": {
-    "ext": "js,html,sh"
-  },
-  "keywords": [
-    "whatsapp-bot",
-    "whatsapp",
-    "js-whatsapp"
-  ],
-  "homepage": "(link unavailable)",
-  "author": {
-    "name": "Frank kaumba"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+(link unavailable)"
-  },
-  "bugs": {
-    "url": "(link unavailable)"
-  },
-  "license": "GPL-3.0-or-later",
+  "keywords": [],
+  "author": "Frank Kaumba",
+  "license": "MIT",
   "dependencies": {
-    "@adiwajshing/baileys": "^2.0.0-beta.16",
-    "cfonts": "^2.9.3",
-    "chalk": "^4.1.1",
+    "@adiwajshing/baileys": "^4.4.1",
+    "cfonts": "^3.3.1",
     "child_process": "^1.0.2",
     "fs": "^0.0.1-security",
-    "path": "^0.12.7"
+    "fs-extra": "^10.0.0",
+    "path": "^0.12.0"
   }
 }
