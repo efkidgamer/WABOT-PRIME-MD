@@ -1,4 +1,4 @@
- module.exports = {
+module.exports = {
   name: 'unmute',
   author: 'Frank Kaumba',
   requiresAdmin: true,
