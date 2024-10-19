@@ -25,20 +25,3 @@ EXPOSE 8080
 # Run the command to start the bot
 CMD ["node", "index.js"]
 ``}
-
-To build the Docker image:
-
-```bash
-docker build -t primemd-bot .
-```
-
-To run the Docker container:
-
-```
-bash
-docker run -d \
-  -e SESSION_ID=your_session_id \
-  -e PHONE_NUMBER=your_phone_number \
-  -e VERIFICATION_CODE=your_verification_code \
-  -p 8080:8080 \
-  primemd-bot
