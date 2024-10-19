@@ -6,6 +6,9 @@ let fs = require('fs');
 let package = require('./package.json');
 const CFonts = require('cfonts');
 const { Baileys } = require('@adiwajshing/baileys');
+const config = require('./config');
+const base64SessionID = config.sessionID;
+const decodedSessionID = Buffer.from(base64SessionID, 'base64').toString('utf8');
 
 CFonts.say('Prime-MD\nWhatsApp Bot', {
   font: 'chrome',
@@ -20,9 +23,6 @@ CFonts.say(`'${package.name}' By ${package.author.name}`, {
 });
 
 var isRunning = false;
-
-const config = require('./config');
-const bot = Baileys(config.sessionID, config.phoneNumber, config.verificationCode);
 
 const commands = {};
 fs.readdirSync('./commands').forEach((file) => {
@@ -72,6 +72,8 @@ function start(file) {
       start(file);
     });
   });
+
+  const bot = Baileys(decodedSessionID, config.phoneNumber, config.verificationCode);
 
   bot.on('message', async (message) => {
     const { from, text } = message;
