@@ -7,13 +7,13 @@ let package = require('./package.json');
 const CFonts = require('cfonts');
 const { Baileys } = require('@adiwajshing/baileys');
 
-CFonts.say('Lightweight\nWhatsApp Bot', {
+CFonts.say('Prime-MD\nWhatsApp Bot', {
   font: 'chrome',
   align: 'center',
   gradient: ['red', 'magenta']
 });
 
-CFonts.say(`'${package.name}' By @${package.author.name || package.author}`, {
+CFonts.say(`'${package.name}' By ${package.author.name}`, {
   font: 'console',
   align: 'center',
   gradient: ['red', 'magenta']
