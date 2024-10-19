@@ -1,4 +1,4 @@
-up{
+{
   "name": "frank-kaumba-bot",
   "version": "1.0.0",
   "description": "Customizable WhatsApp Bot by Frank Kaumba",
@@ -51,4 +51,3 @@ up{
     "yargs": "^17.0.1",
     "yt-search": "^2.9.0"
   }
-}
