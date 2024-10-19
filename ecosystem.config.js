@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'Prime-MD',
-      script: 'index.js',
+      script: 'https://github.com/WABOT-PRIME-MD/index.js',
       instances: 1,
       autorestart: true,
       watch: true,
